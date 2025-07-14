@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Special Birthday Wish</title>
+<style>
+  body {
+    background: url('https://images.unsplash.com/photo-1516728778615-2d590ea1856f?auto=format&fit=crop&w=1500&q=80') no-repeat center center fixed;
+    background-size: cover;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: white;
+    text-align: center;
+    padding: 30px 15px;
+    min-height: 100vh;
+    backdrop-filter: brightness(0.5);
+    overflow-x: hidden;
+  }
+  h1 {
+    margin-bottom: 30px;
+    font-size: 28px;
+  }
+  button {
+    background: rgba(255, 255, 255, 0.95);
+    color: #d63384;
+    border: none;
+    padding: 12px 20px;
+    margin: 8px;
+    font-size: 16px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background 0.3s ease, color 0.3s ease;
+  }
+  button:hover {
+    background: #d63384;
+    color: white;
+  }
+  #content {
+    margin-top: 30px;
+    max-width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 20px;
+    border-radius: 18px;
+    min-height: 220px;
+  }
+  pre {
+    white-space: pre-wrap;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #ffe6f2;
+  }
+  .hearts {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+  }
+  .heart {
+    width: 24px;
+    height: 24px;
+    background-color: #ff69b4;
+    position: absolute;
+    animation: float 7s linear infinite;
+    transform: rotate(45deg);
+    top: 100%;
+    opacity: 0.8;
+  }
+  .heart::before,
+  .heart::after {
+    content: '';
+    width: 24px;
+    height: 24px;
+    background-color: #ff69b4;
+    position: absolute;
+    border-radius: 50%;
+  }
+  .heart::before {
+    top: -12px;
+    left: 0;
+  }
+  .heart::after {
+    left: -12px;
+    top: 0;
+  }
+  @keyframes float {
+    0% {
+      transform: translateY(0) rotate(45deg);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-110vh) rotate(45deg);
+      opacity: 0;
+    }
+  }
+</style>
+</head>
+<body>
+
+<h1>Happy Birthday, Tanha 🎂</h1>
+
+<button id="btnPoem">Poem</button>
+<button id="btnWish">Wish</button>
+<button id="btnTuli">Brainless Tuli</button>
+
+<div id="content">
+  <p>Click on a button above to see your special message!</p>
+</div>
+
+<div class="hearts" id="hearts"></div>
+
+<script>
+  const contentDiv = document.getElementById('content');
+
+  const poemText = `একটু কাছে থাকি, কথা না বলেই,
+চুপচাপ মনের মাঝে ছড়িয়ে পড়ি,
+তুমি না বুঝলেও, আমি বুঝি একটু,
+আকাশের নীচে যেন আমাদের রাজ্য।
+
+কোনো শব্দ নেই, কোনো চাওয়া নেই,
+শুধু ভালো লাগার একটা ছোঁয়া বাকি,
+তুমি না বোঝলেও, মনে হয় জানো,
+এই নীরব ভালোলাগাটা যত মিষ্টি।`;
+
+  const wishText = `Before we started talking, everything was kind of usual —  
+days just came and went, nothing too exciting.
+
+But after getting to know you, things felt a little different.  
+Somehow, random conversations started feeling special.  
+Little moments felt lighter, warmer — even on the busiest days.
+
+It’s not like life turned upside down,  
+but your presence made it better in small ways.  
+You probably have no idea — and that’s okay.
+
+On your birthday, I just hope you always stay the amazing person you are.  
+Kind, funny, and effortlessly genuine.
+
+Happy Birthday. You deserve the best — always. 🎉`;
+
+  const tuliText = `Actually sorry evabe wish korar jonno but.. way chilo na amar kache ar.
+Tomak niye onk kichu bolar ache kintu shob bolbo na.
+Onk kichu na bollei better hoy.
+
+etar pore tomar reaction kmon hbe jani na,
+hoytoh abar kotha bola off hbe ba aro wrost kichu hbe...
+kintu ami better expect kori na. Cz vhoi lage.
+
+BTW ami kal raat theke akhon dupur obdhi sudhu tomar etar jonno coding shikhe eta banacchi...
+kichu na parleo ekta tnx dio — etao cholbe amar jonno.
+
+ami ashole onk excited tai guchiye likhte parchi na.
+hoytoh kokhon shob guchiye bola hbe, shuna hbe...
+nahole kichui hbe na.
+
+Again sorry evabe wish korar jonno.`;
+
+  document.getElementById('btnPoem').addEventListener('click', () => {
+    contentDiv.innerHTML = `<pre>${poemText}</pre>`;
+  });
+
+  document.getElementById('btnWish').addEventListener('click', () => {
+    contentDiv.innerHTML = `<pre>${wishText}</pre>`;
+  });
+
+  document.getElementById('btnTuli').addEventListener('click', () => {
+    contentDiv.innerHTML = `<pre>${tuliText}</pre>`;
+  });
+
+  // Enhanced floating hearts
+  const heartsContainer = document.getElementById("hearts");
+  setInterval(() => {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = (Math.random() * 2 + 5) + "s";
+    heart.style.opacity = Math.random();
+    heartsContainer.appendChild(heart);
+    setTimeout(() => heart.remove(), 7000);
+  }, 200);
+</script>
+
+</body>
+</html>
